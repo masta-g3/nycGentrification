@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
@@ -15,7 +15,7 @@
 
   <link rel="icon" type="image/png" href="images/favicon.png">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -36,70 +36,72 @@
     <div class="container">
       <div class="twelve columns">
         <div class="row">
-          <h4>Introduction</h4>
+          <h3>Introduction</h3>
           <p>Gentrification is a subject that has received significant media and academic attention in the last few decades, mainly because it’s a process powered by the possibility of mobility which has been limited in earlier years. Given the recent rise of this phenomena, researchers have not yet been able to reach an agreement on what are its causes, its social and economical effects, or even on what constitutes a formal process of gentrification. Regardless of this, the subject is one that continues to gain importance, mainly because it has been accelerating on recent years, and it has significant implications in public policy; for example, in several studies it has been negatively associated with the displacement of population and loss of capital investment.</p>
 
           <p>An interesting study performed on this subject is that of <em>Nathalie Voorhees</em> from Chicago's Center for Neighborhood and Community Improvement. On it, the researcher takes 13 variables that have been associated with gentrification and neighborhood upgrading in the literature and uses them to create a <em>Gentrification Index</em> that evaluates this process through Chicago's different community areas. More details can be found <a href="http://www.voorheescenter.com/#!gentrification-index/ccmx" target="_blank">here</a>. We will translate Voorhees' study to the New York Metro area, investigating the relevance of our results under this different social and economic context.</p>
 
-          <h4>Data</h4>
-          <p>Gentrification is a subject that has received significant media and academic attention in the last few decades, mainly because it’s a process... </p>
+          <h3>Data</h3>
+          <p>Below we present the variables identified by Voorhees, along with the theoretical relationship they hold with it. By hovering of each of them it is possible to see the abreviation that will be used for each variable throughout the study. The 2 most prominent authors on the field are David Ley and Daniel J. Hammel, with their classical research papers accounting for a large percentage of those available on the subject. A number of other authors have recently contributed to the analysis by proposing a couple of new covariates.</p>
 
-          <h4>Correlation Across Variables</h4>
-          <iframe width="600" height="600" frameborder="0" scrolling="no" src="https://plot.ly/~masta_g3/7.embed"></iframe>
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Ley (1992-99)</th>
+                <th>Hammel, et al. (1996-2004)</th>
+                <th>Other autors (2010-2014)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td title = "HOUSEVAL13">Median House Value <b>(+)</b></td>
+                <td title = "MGMT13">Pct. Manager Occupations <b>(-)</b></td>
+                <td title = "FEM13">Pct. Female Led Households</td>
+              </tr>
+              <tr>
+                <td title = "INCOME13">Median Family Income <b>(+)</b></td>
+                <td title = "EDUCATION13">Pct. College Education <b>(-)</b></td>
+                <td title = "CHILD13">Pct. Children (<19 years)</td>
+              </tr>
+              <tr>
+                <td title = "POVERTY13">Pct. Low Income Families <b>(-)</b></td>
+                <td title = "OWNER13">Pct. Owner Occupied Homes <b>(-)</b></td>
+                <td title = "PRIV13">Pct. Private School Attendance</td>
+              </tr>
+              <tr>
+                <td title = "ELDERY13">Pct. Eldery (>65 years) <b>(-)</b></td>
+                <td title = "WHITE13">Pct. White <b>(-)</b></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td title = "BLACK13">Pct. Black <b>(-)</b></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td title = "LATINO13">Pct. Latino <b>(-)</b></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
 
-          <h4>Correlation with House Vale</h4>
-          <iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~masta_g3/19.embed"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
+          <p>It would be interesting to know how each of the variables interact with each other. If the theory is correct, we would expect those positively associated with gentrification to be positively correlated among each other. We would also expect a negative correlation with those variables negatively associated to gentrification. The chart below help us test these assumptions by showing a correlation matrix among all variables.</p>
 
+          <h5>Correlation Across Variables</h5>
+          <iframe width="600" height="550" frameborder="0" scrolling="no" src="https://plot.ly/~masta_g3/37.embed"></iframe>
 
-  <div class="section layout-1">
-    <div class="container">
+          <p>We see that in general the expected relationship holds, although reading the graph becomes dificult due to the large amount of data in display. Now we will take another approach: given that gentrification is directly and indisputably associated with increases in Home Values, and considering this is probably the most tangible effect in terms of public policy (i.e. the main driver of displacement), we will use HOUSEVAL13 as our independent variable and investigate the correlation of all other variables against this one. To make the analysis more granular, we will also split the data per county. Below we can find the results.</p>
 
-    </div>
-  </div>
+          <h5>Correlation with House Vale</h5>
+          <iframe width="900" height="700" frameborder="0" scrolling="no" src="https://plot.ly/~masta_g3/39.embed"></iframe>
 
+          <p>Some interesting results arise: although the direction of association is in line with our expectations (or practically null), the magnitudes differ significantly accros counties. We see the largest interactions occuring on Manhattan and Kings, while they are severely reduced on the Bronx. This suggests that the gentrification phenomena is more prevalent on these 2 first regions.</p>
 
+          <h3>Gentrification Index</h3>
 
+          <p>In order to build the gentrification index, we will use the comparative approach followed by Voorhees. For it, we will look at the level of each variable on each census tracts, and compare it to the mean of the population (in this case the mean of the county, to account for possible structural differences among them). If the value is above-average, and the theoretical association with gentrification is possitive, we assign the tract a score of +1. If the proposed association is negative, then the tract receives a score of -1. Following the same logic we also assign scores to the below-average tracts. At the end the scores for all variables are added up, and those tracts with positive values are identified as "getrifying".</p>
 
-
-
-
-
-  <div class="section values">
-    <div class="container">
-      <div class="row">
-        <div class="one-third column value">
-          <h2 class="value-multiplier">67%</h2>
-          <h5 class="value-heading">Purchase Increase</h5>
-          <p class="value-description">Percentage of users more likely to purchase on mobile friendly site.</p>
-        </div>
-        <div class="one-third column value">
-          <h2 class="value-multiplier">90%</h2>
-          <h5 class="value-heading">Multi-device Users</h5>
-          <p class="value-description">Most of the world accesses the internet on multiple devices.</p>
-        </div>
-        <div class="one-third column value">
-          <h2 class="value-multiplier">66%</h2>
-          <h5 class="value-heading">Sad Users</h5>
-          <p class="value-description">Percentage of users that are frustrated with page load times.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section categories">
-    <div class="container">
-      <h3 class="section-heading">Responsive Images</h3>
-      <p class="section-description">Skeleton images sit easily in grid with .u-max-full-width class. I suggest exploring solution to serving different images based on device size.</p>
-      <div class="row">
-        <div class="one-half column category">
-          <img class="u-max-full-width" src="images/placeholder.png">
-        </div>
-        <div class="one-half column category">
-          <img class="u-max-full-width" src="images/placeholder.png">
         </div>
       </div>
     </div>
