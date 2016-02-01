@@ -110,22 +110,21 @@
           <p>In order to build the gentrification index, we will use the comparative approach followed by Voorhees. For it, we will look at the level of each variable on each census tracts, and compare it to the mean of the population (in this case the mean of the county, to account for possible structural differences among them). If the value is above-average, and the theoretical association with gentrification is possitive, we assign the tract a score of +1. If the proposed association is negative, then the tract receives a score of -1. Following the same logic we also assign scores to the below-average tracts. At the end the scores for all variables are added up, and those tracts with positive values are identified as "getrifying".</p>
 
         </div>
-        <div class="row">
-          <div id="map"></div>
-          <div id="cartocss" class="layer_selector">
-              <p id="js-var-selector">VARIABLE SELECTOR</p>
-              <ul class="LayerSelector-list">
-                  <li data="0">Total Violent Crime
-                  </li>
-                  <li data="1">Aggravated Assault
-                  </li>
-                  <li data="2">Property Crime
-                  </li>
-                  <li data="3">Burglary
-                  </li>
-              </ul>
-          </div>
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <div id="map"></div>
+
+        <div id="cartocss" class="layer_selector">
+            <p id="js-var-selector">VARIABLE SELECTOR</p>
+            <ul class="LayerSelector-list">
+                <li data="0">Total Violent Crime
+                </li>
+                <li data="1">Aggravated Assault
+                </li>
+                <li data="2">Property Crime
+                </li>
+                <li data="3">Burglary
+                </li>
+            </ul>
         </div>
       </div>
     </div>
@@ -189,6 +188,7 @@
           });
       });
   </script>
+
 </body>
 
 </html>
