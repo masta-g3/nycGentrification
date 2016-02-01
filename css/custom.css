@@ -151,3 +151,68 @@
     max-height: 570px;
   }
 }
+
+/* Carto DB Stuff
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+html, body, #map {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.layer_selector {
+    background: #fff;
+    border-radius: 4px;
+    padding: 0;
+    border: 1px solid #999999;
+    width: 248px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
+    font: 11px 'Helvetica';
+    position: absolute;
+    right: 20px;
+    bottom: 150px;
+}
+
+.layer_selector > p {
+    font-weight: bold;
+    color: #666666;
+    padding: 14px 14px 12px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #999;
+}
+
+.layer_selector ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    bottom: 36px;
+    border-radius: 4px;
+}
+
+.layer_selector li {
+    padding: 14px;
+    font-size: 11px;
+    color: #222;
+    cursor: pointer;
+}
+.layer_selector li:not(:last-child) {
+    border-bottom: 1px solid #999;
+}
+.layer_selector li:hover {
+    background-color: #e5e5e5;
+    cursor: pointer;
+}
+.layer_selector li.sql_selected,
+.layer_selector li.cartocss_selected {
+    background-color: #A6CEE3;
+}
+
+.leaflet-left .leaflet-control {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+div.cartodb-legend-stack {
+    bottom: 30px;
+    right: 30px;
+}
