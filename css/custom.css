@@ -154,10 +154,9 @@
 
 /* Carto DB Stuff
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-html, body, #map {
-    height: 100%;
-    padding: 0;
-    margin: 0;
+#map {
+  height: 700px;
+  width: 50%;
 }
 
 .layer_selector {
@@ -190,7 +189,7 @@ html, body, #map {
 }
 
 .layer_selector li {
-    padding: 14px;
+    padding: 7px;
     font-size: 11px;
     color: #222;
     cursor: pointer;
@@ -210,9 +209,4 @@ html, body, #map {
 .leaflet-left .leaflet-control {
     margin-left: 30px;
     margin-top: 30px;
-}
-
-div.cartodb-legend-stack {
-    bottom: 30px;
-    right: 30px;
 }

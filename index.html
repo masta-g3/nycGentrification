@@ -125,7 +125,6 @@
                   </li>
               </ul>
           </div>
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
       </div>
     </div>
@@ -138,17 +137,16 @@
       // Instantiate new map object, place it in 'map' element
       var map_object = new L.Map('map', {
           scrollWheelZoom: false,
-          center: [34.6541154,-4.4637914],
-          legends: false,
-          zoom: 11
+          center: [40.7403,-73.8657],
+          zoom: 10.8
       });
 
       var densityLegend = new cdb.geo.ui.Legend.Density({
-            title:   "Data From FBI Crime Reporting 2013",
-              left: "Low", right: "High", colors: [ "#FFFFB2", "#FEB24C", "#FC4E2A", "#E31A1C", "#B10026"  ]
+            title:   "Variable Relative Values",
+              left: "Low", right: "High", colors: [ "#FFFFCC", "#A1DAB4", "#41B6C4", "#2C7FB8", "#253494"  ]
             });
             $('#map').append(densityLegend.render().el);
-            $(densityLegend.render().el).show()
+            //$(densityLegend.render().el).show()
 
       // Create layer selector
       function createSelector(layer,num) {
@@ -169,7 +167,8 @@
       var sublayers;
 
       // Add data layer to your map
-      cartodb.createLayer(map_object,'https://masta-g3.cartodb.com/api/v2/viz/9e117f7e-beed-11e5-8311-0ecd1babdde5/viz.json')
+      cartodb.createLayer(map_object,'https://masta-g3.cartodb.com/api/v2/viz/9e117f7e-beed-11e5-8311-0ecd1babdde5/viz.json',
+    {legends: false})
           .addTo(map_object)
           .done(function(layer) {
             $("li").on('click', function(e) {
@@ -178,7 +177,7 @@
             });
           })
           .error(function(err) {
-              console.log("error: " + err);
+              console.log("An error occurred: " + err);
           });
       }
 

@@ -20,6 +20,11 @@
 
 
         <style type="text/css">
+            html, body, #map {
+                height: 100%;
+                padding: 0;
+                margin: 0;
+            }
 
             #sql {
                 position: absolute;
@@ -237,8 +242,9 @@
 
             // Instantiate new map object, place it in 'map' element
             var map_object = new L.Map('map', {
-                center: [34.6541154,-4.4637914], // San Francisco
-                zoom: 4
+                center: [40.7903, -73.9597],
+                zoom: 4,
+                legends: false
             });
 
 
