@@ -63,17 +63,17 @@
               <tr>
                 <td title = "HOUSEVAL13">Median House Value <b>(+)</b></td>
                 <td title = "MGMT13">Pct. Manager Occupations <b>(-)</b></td>
-                <td title = "FEM13">Pct. Female Led Households</td>
+                <td title = "FEM13">Pct. Female Led Households <b>(-)</b></td>
               </tr>
               <tr>
                 <td title = "INCOME13">Median Family Income <b>(+)</b></td>
                 <td title = "EDUCATION13">Pct. College Education <b>(-)</b></td>
-                <td title = "CHILD13">Pct. Children (<19 years)</td>
+                <td title = "CHILD13">Pct. Children (<19 years) <b>(-)</b></td>
               </tr>
               <tr>
                 <td title = "POVERTY13">Pct. Low Income Families <b>(-)</b></td>
                 <td title = "OWNER13">Pct. Owner Occupied Homes <b>(-)</b></td>
-                <td title = "PRIV13">Pct. Private School Attendance</td>
+                <td title = "PRIV13">Pct. Private School Attendance <b>(+)</b></td>
               </tr>
               <tr>
                 <td title = "ELDERY13">Pct. Eldery (>65 years) <b>(-)</b></td>
@@ -109,44 +109,66 @@
 
           <p>In order to build the gentrification index, we will use the comparative approach followed by Voorhees. For it, we will look at the level of each variable on each census tracts, and compare it to the mean of the population (in this case the mean of the county, to account for possible structural differences among them). If the value is above-average, and the theoretical association with gentrification is possitive, we assign the tract a score of +1. If the proposed association is negative, then the tract receives a score of -1. Following the same logic we also assign scores to the below-average tracts. At the end the scores for all variables are added up, and those tracts with positive values are identified as "getrifying".</p>
 
-        </div>
-        <div class="row">
-          <div id="map"></div>
-          <div id="cartocss" class="layer_selector">
-              <p id="js-var-selector">VARIABLE SELECTOR</p>
-              <ul class="LayerSelector-list">
-                  <li data="0">Total Violent Crime
-                  </li>
-                  <li data="1">Aggravated Assault
-                  </li>
-                  <li data="2">Property Crime
-                  </li>
-                  <li data="3">Burglary
-                  </li>
-              </ul>
-          </div>
+          <p>The first map below presents the distribution of 3 variables making up the index: <em>Pct. College Education</em>, <em>Pct. Black</em> and <em>Median House Value</em>, along with the actual <em>Gentrification Index</em>. Other variables were excluded due to limitations with CartoDB Academic Licence.</p>
+
         </div>
       </div>
+      <div class="row">
+          <div id="map"></div>
+          <br>
+        <p>At first glance we can see a clustering of gentrification-contributing variables on Mid and Lower Manhattan, south-west Brooklyn, east of Queens, and north of the Bronx, although these last two appear less prevalent. To continue with the analysis, now we present <em>Statistically Significant Clusters (95%)</em>, which are derived using the Moran's I indicator. This should give us more confidence on our findings. To switch across variables use the same menu from the map above.</p>
+        <div id="map2"></div>
+        <div id="cartocss" class="layer_selector">
+            <p id="js-var-selector">VARIABLE SELECTOR</p>
+            <ul class="LayerSelector-list">
+                <li data="0">% College Education
+                </li>
+                <li data="1">% Black
+                </li>
+                <li data="2">Median House Value
+                </li>
+                <li data="3">Gentrification Index
+                </li>
+            </ul>
+      </div>
+      <br>
+      <p>The clustering analysis confirms our findings, revealing that these are statistically relevant. We also see negative clusters occuring on the upper-east Brooklyn and the South of the Bronx, areas that are know to have adverse economic conditions.</p>
+      </div>
     </div>
-  </div>
 
   <!-- Now the CartoDB Script -->
   <script type="text/javascript">
     window.onload = function() {
 
-      // Instantiate new map object, place it in 'map' element
+      // Instantiate first map object, place it in 'map' element.
       var map_object = new L.Map('map', {
           scrollWheelZoom: false,
-          center: [40.7403,-73.8657],
-          zoom: 10.8
+          center: [40.7323,-73.8657],
+          zoom: 11
       });
 
+      // Instantiate second map object.
+      var map_object2 = new L.Map('map2', {
+          scrollWheelZoom: false,
+          center: [40.7323,-73.8657],
+          zoom: 11
+      });
+
+      // Custom legend first map.
       var densityLegend = new cdb.geo.ui.Legend.Density({
-            title:   "Variable Relative Values",
-              left: "Low", right: "High", colors: [ "#FFFFCC", "#A1DAB4", "#41B6C4", "#2C7FB8", "#253494"  ]
+            //title:   "Variable Relative Values",
+            left: "Low", right: "High", colors: [ "#FFFFCC", "#A1DAB4", "#41B6C4", "#2C7FB8", "#253494"  ]
             });
             $('#map').append(densityLegend.render().el);
-            //$(densityLegend.render().el).show()
+
+            // Custom legend second map.
+            var customLegend = new cdb.geo.ui.Legend.Custom({
+                  data: [
+                    {name:"Positive Cluster", value:"#B2DF8A"},
+                    {name:"Negative Cluster", value:"#FB9A99"}
+                  ]
+                  });
+                  $('#map2').append(customLegend.render().el);
 
       // Create layer selector
       function createSelector(layer,num) {
@@ -162,11 +184,12 @@
 
       // Pull tiles from CartoDB's basemaps
       L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(map_object);
+      L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(map_object2);
 
       // for storing sublayer outside of createlayer
       var sublayers;
 
-      // Add data layer to your map
+      // Add data layer to first map
       cartodb.createLayer(map_object,'https://masta-g3.cartodb.com/api/v2/viz/9e117f7e-beed-11e5-8311-0ecd1babdde5/viz.json',
     {legends: false})
           .addTo(map_object)
@@ -179,8 +202,22 @@
           .error(function(err) {
               console.log("An error occurred: " + err);
           });
-      }
 
+
+      // Add data layer to first map
+      cartodb.createLayer(map_object2,'https://masta-g3.cartodb.com/api/v2/viz/5bf7d944-bef2-11e5-99ed-0e674067d321/viz.json',
+    {legends: false})
+          .addTo(map_object2)
+          .done(function(layer) {
+            $("li").on('click', function(e) {
+              var num = +$(e.target).attr('data');
+              createSelector(layer,num);
+            });
+          })
+          .error(function(err) {
+              console.log("An error occurred: " + err);
+          });
+      }
 
       $( document ).ready(function() {
           $( "#js-crime-selector" ).click(function() {

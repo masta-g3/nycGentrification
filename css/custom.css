@@ -155,8 +155,14 @@
 /* Carto DB Stuff
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #map {
-  height: 700px;
-  width: 50%;
+  height: 740px;
+  width: 95%;
+  margin-left:2.5%;}
+
+#map2 {
+  height: 740px;
+  width: 95%;
+  margin-left:2.5%;
 }
 
 .layer_selector {
@@ -168,8 +174,8 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
     font: 11px 'Helvetica';
     position: absolute;
-    right: 20px;
-    bottom: 150px;
+    left: 650px;
+    bottom: 1470px;
 }
 
 .layer_selector > p {
